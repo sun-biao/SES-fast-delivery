@@ -7,27 +7,16 @@ import hashlib
 import json, time
 import mysql.connector
 
-# greeting = {"EN-high-7th":"Matchington mansion Turns 7!",
-#     "EN-other-7th":"Matchington mansion Turns 7!",
-#     "JP-high-7th":"マッチントンマンション7周年記念！",
-#     "JP-other-7th":"マッチントンマンション7周年記念！",
-#     "KR-high-7th":"행복의저택이7주년을맞았습니다!",
-#     "KR-other-7th":"행복의저택이7주년을맞았습니다!",
-# }
 
-greeting = {"EN":"Matchington mansion Turns 7!",
-    "JP":"マッチントンマンション7周年記念！",
-    "KR":"행복의저택이7주년을맞았습니다!",
-    "CNS":"Matchington Mansion 七歲了！",
-    "DE":"das Herrenhaus Matchington wird 7 Jahre alt!",
-    "FR":"Le manoir de Matchington a 7 ans !",
-    "ES":"¡la mansión Matchington cumple 7 años!"
+
+greeting = {"EN":"Game mansion Turns 7!",
+
 }
 templates = ['FR-high-7th','ES-high-7th','KR-high-7th','JP-high-7th','DE-high-7th','EN-high-7th','CNS-high-7th','FR-other-7th','ES-other-7th','KR-other-7th','JP-other-7th','DE-other-7th','EN-other-7th','CNS-other-7th']
 
-senderemail = "<MM@matchingtonmansion.com>"
-salt = 'aosidfjwkeajoisdflkjwaoalsdkjf9283982733'
-unsub_url = 'https://8ngevcqps4.execute-api.us-west-2.amazonaws.com/prod/unsubscribe'
+senderemail = "<MM@<SENDER_EMAIL>.com>"
+salt = 'saltstring'
+unsub_url = 'https://<YOUR UNSUB URL>/prod/unsubscribe'
 client = boto3.client('sesv2', region_name='us-west-2')
 cloudwatchclient = boto3.client('cloudwatch', region_name='us-west-2')
 
@@ -40,9 +29,9 @@ def initdb():
     # 连接到MySQL数据库
     global db,cursor
     db = mysql.connector.connect(
-        host="email.cluster-cp2k0i0iuocy.us-west-2.rds.amazonaws.com",
-        user="admin",
-        password="admin1234",
+        host="<RDS URL>",
+        user="<USERNAME>",
+        password="<PASSWORD>",
         database="email"
     )
     cursor = db.cursor()
