@@ -4,9 +4,9 @@ import boto3
 
 
 db = mysql.connector.connect(
-    host="email.cluster-cp2k0i0iuocy.us-west-2.rds.amazonaws.com",
-    user="admin",
-    password="admin1234",
+    host="<HOST>",
+    user="<USER_NAME>",
+    password="<PWD>",
     database="email"
 )
 cursor = db.cursor()
